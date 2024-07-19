@@ -1,1 +1,1 @@
-web: gunicorn crm.wsgi
+web: gunicorn real_estate_prj.wsgi

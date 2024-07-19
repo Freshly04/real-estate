@@ -6,7 +6,7 @@ from .forms import UserRegisterForm, UserLoginForm, NewItemForm
 from .models import Category, Product
 
 
-# Create your views here.
+# Create your views home
 
 
 def home(request):
@@ -104,7 +104,7 @@ def delete(request, pk):
 
     if request.method == "POST":
         product.delete()
-    return redirect("core:home")
+        return redirect("core:home")
 
     context = {"product": product}
     return render(request, "core/delete.html", context)
