@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Real Estate App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+  <style>
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0  auto;
+    padding: 0 15px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 100px;
+    margin-bottom: 0px;
+}
+
+.footer-section h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.footer-section p, .footer-section ul, .footer-section li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #bbb;
+}
+
+.footer-section ul {
+    padding-left: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0px;
+}
+
+.footer-section ul li a {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    color: #fff;
+}
+
+.footer-section .contact ul li {
+    display: flex;
+    align-items: center;
+}
+
+.footer-section .contact ul li i {
+    margin-right: 10px;
+}
+.footer-section .follow-us .social-icons {
+   display: flex;
+   gap: 18px;
+}
+.footer-section .follow-us .social-icons {
+  color: #bbb;-->
+  font-size: 20px   text-decoration:
+}
+
+.footer-section .follow-us .social-icons  a:hov {
+     color
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #444;
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: #bbb;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 0;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0  auto;
+    padding: 0 15px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 100px;
+    margin-bottom: 0px;
+}
+
+.footer-section h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.footer-section p, .footer-section ul, .footer-section li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #bbb;
+}
+
+</style>
+
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container-fluid container">
+    <a class="title-brand" href="#">HOME HUNT</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"  style="font-family:poetsen one;font-weight: 900;color:#365E32">Home</a>
+            </li>
+            <li class="nav-item">
+                <div container>
+              <a class="nav-link active" href="#" style="font-family:poetsen one;font-weight: 900;color:#365E32">Link</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="font-family:poetsen one;font-weight: 900;color:#365E32">
+                Category
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">All</a></li>
+                <li><a class="dropdown-item" href="#"></a></li>
+                  {% for category in all_categories %}
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">{{ category }}</a></li>
+                  {% endfor %}
+              </ul>
+            </li>
+
+              {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'core:dashboard' %}" style="font-family:poetsen one;font-weight: 900;color: #FFC55A"><b>DashBoard</b></a>
+            </li>
+
+            <li  class="nav-item">
+                <a class="nav-link" href="{% url 'core:signup' %}"  style="font-family:poetsen one;font-weight: 900;color:#365E32"><b>logout</b></a>
+            </li>
+            <li  class="nav-item">
+                <a class="nav-link" href="{% url 'core:add-item' %}"  style="font-family:poetsen one;font-weight: 900;color:#365E32"><b>Add item</b></a>
+            </li>
+            <li>
+                <a class="nav-link" href="{% url 'conversation:inbox' %}"  style="font-family:poetsen one;font-weight: 900;color:#365E32"><b>Inbox</b></a>
+            </li>
+                <a class="nav-link" href="{% url 'core:login' %}"  style="font-family:poetsen one;font-weight: 900;color:#365E32"><b>Welcome @{{request.user}}</b></a>
+
+                  {% else %}
+            <li  class="nav-item">
+                <a class="nav-link" href="{% url 'core:signup' %}"  style="font-family:poetsen one;font-weight: 900;color:#365E32"><b>logout</b></a>
+            </li>
+             {% endif %}
+            </ul>
+      <form class="d-flex" role="search" action="">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" value="{{qery}}">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+  <div class="container">
+     {% block content %}
+    {% endblock content %}
+  </div>
+
+<footer>
+    <div class="footer-container my-5">
+        <div class="footer-section about"  style="font-family:poetsen one;font-weight: 900;color:#365E32">
+            <h2>About RealEstateApp</h2>
+            <p>RealEstateApp is your go-to platform for</p>
+            <p>finding the best properties in your desired</p>
+            <p>locations. Our mission is to make property</p>
+            <p>hunting easy, efficient, and enjoyable.</p>
+        </div>
+        <div class="footer-section links"  style="font-family:poetsen one;font-weight: 900;color:#365E32">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/properties">Browse Properties</a></li>
+                <li><a href="/agents">Find an Agent</a></li>
+                <li><a href="/blog">Blog</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/privacy">Privacy Policy</a></li>
+                <li><a href="/terms">Terms of Service</a></li>
+            </ul>
+        </div>
+        <div class="footer-section contact"  style="font-family:poetsen one;font-weight: 900;color:#365E32">
+            <h2>Contact Us</h2>
+            <ul>
+                <li><i class="fa fa-map-marker"></i> 123 RealEstate St, Property City, XYZ 12345</li>
+                <li><i class="fa fa-phone"></i> (123) 456-7890</li>
+                <li><i class="fa fa-envelope"></i> info@realestateapp.com</li>
+            </ul>
+        </div>
+        <div class="footer-section follow-us"  style="font-family:poetsen one;font-weight: 900;color:#365E32">
+            <h2>Follow Us</h2>
+              <li>facebook</li>
+              <li>twitter</li>
+              <li>instagram</li>
+              <li>linkedin</li>
+
+        </div>
+    </div>
+    <div class="footer-bottom"  style="font-family:poetsen one;font-weight: 900;color:#365E32">
+        <p>&copy; 2024 RealEstateApp. All Rights Reserved.</p>
+    </div>
+</footer>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+

@@ -1,0 +1,14 @@
+from django.urls import path
+from . import views
+
+
+app_name = "conversation"
+
+urlpatterns = [
+    path("", views.inbox, name="inbox"),
+    path("new/<int:item_pk>/", views.new_conversation, name="new"),
+    path("detail/<int:pk>/", views.detail, name="detail"),
+    path("delete/<int:pk>/", views.delete, name="delete"),
+    path("dashboard/", views.dashboard, name="dashboard"),
+    path("search/", views.search, name="search"),
+]

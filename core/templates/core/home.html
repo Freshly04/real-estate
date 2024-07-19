@@ -1,0 +1,53 @@
+{% extends 'core/base.html' %}
+
+
+{% block content %}
+
+<style>
+    .everything{
+        background-image: url('core/backgroundimage.jpg')
+        background-color: black;
+
+    }
+
+</style>
+
+<div class="everything">
+    <br>
+
+    <h1 style="font-family:sevillana;font-weight: 900; color:365E32;text-align:center"  class=" text-align:center top-10 start-50 translate-middle p-1 bg-warning rounded-circle my-5 mx-5">WELCOME</h1>
+<button type="button" class="btn btn-success position-relative" style="margin-left:600px">
+        HOME HUNT :
+        RealEstateApp
+        <span class="position-absolute top-0 start-100 translate-middle p-2 bg-warning border-light rounded-circle">
+            <span class="visually-hidden">HOME HUNT:
+        RealEstateApp</span>
+        </span>
+</button>
+<br>
+
+<div class="container my-5"  style="font-family:poetsen one;font-weight: 900;color:#365E32">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+          <div class="col">
+                <div class="card h-100">
+                  <img src="{{ product.image.url }}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">${{ product.price }}</p>
+                      <a href="{% url 'core:detail' product.id %}" class="btn btn-outline-brown bg-primary">view</a>
+
+                  </div>
+                </div>
+          </div>
+        {% endfor %}
+    </div>
+</div>
+
+</div>
+
+
+
+
+{% endblock content %}
+

@@ -1,0 +1,105 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Add Details{% endblock title %}
+
+{% block content %}
+
+<h1>item.name Detail</h1>
+
+<div class=" py-5 bg-body-secondary rounded">
+ <div class="container">
+   <div class="row mx-5">
+     <div class="col-md-8">
+       <img src="{{product.image.url}}" class="img-fluid rounded" width="100%">
+     </div>
+     <div class="col-md-4">
+        <!-- Add more details about the item here -->
+        <h2>{{product.name}}</h2>
+         <br>
+        <p><strong>Price: </strong> ₦ {{ product.price }}</p>
+         <p>ID:{{ product.id }}</p>
+        <p><strong>Description:</strong><br>
+        </p>
+         <p>{{product.description}}</p>
+         <br>
+        <p><strong>Vendor: </strong>@ {{product.created_by.username}} </p>
+        <!-- if the requesting user is the product owner-->
+         {% if request.user == product.created_by %}
+         <a href="{% url 'core:update-product' product.id %}" type="button" class="btn btn-md btn-outline-success">Edit</a>
+         <a href="{% url 'core:detail' product.id %}" type="button" class="btn btn-md btn-outline-danger">Delete</a>
+         <a href="{% url 'core:detail' product.id %}" type="button" class="btn btn-md btn-outline-black">back</a>
+         <!-- otherwise -->
+         {% else %}
+        <div class="row justify-content-start">
+            <div class="col-md-8">Select Quantity:</div>
+            <div class="col-md-8">
+            <select class="form-select" id="qty-cart">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+            </div>
+        </div>
+
+        <br><br>
+
+         <a href="{% url 'conversation:new' product.id %}" class="btn btn-secondary">Contact Seller</a>
+         <button type="button" value="{{ product.id }}" class="btn btn-success" id="add-cart">Add to Cart</button>
+
+         <!-- end here -->
+         {% endif %}
+        </div>
+     </div>
+   </div>
+ </div>
+    <br>
+    <hr>
+    <br>
+    <h1 class="container">Related items</h1>
+    <div class="container my5">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% if related_products %}
+                 {% for item in related_products %}
+                <div class="col">
+                <div class="card shadow-sm">
+                    <img src="item.image" alt="" width="100%" height="225">
+                    <div class="card-body">
+                        <p class="card-text"> {{item.name}}</p>
+                        <p class="card-text">$ {{itme.price}}</p>
+                        <p class="card-text"><strong>Category: </strong>{{item.category.name}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+
+                                {% if request.user == item.created_by %}
+                                <a href="{% url 'core:detail' item.id %}" type="button"
+                                   class="btn btn-sm btn-outline-secondary">View</a>
+                                <a href="{% url 'core:update-product' product.id %}" type="button" class="btn btn-sm btn-outline-success">Edit</a>
+                                <a href="{% url 'core:delete' product.id %}" type="button" class="btn btn-sm btn-outline-danger">Delete</a>
+                                {% else %}
+                                <a href="{% url 'core:detail' item.id %}" type="button"
+                                   class="btn btn-sm btn-outline-secondary">View</a>
+                                <button type="button" class="btn btn-sm btn-outline-secondary">Buy Now</button>
+                                <a href="conversation new with pk" type="button"
+                                   class="btn btn-sm btn-outline-secondary">Contact Seller</a>
+                                <!-- add to cart and take the user to check-out page-->
+                                {% endif %}
+                            </div>
+                            <small class="text-body-secondary">@ item created_by.username </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                     {% endfor %}
+                     {% else %}
+                     <p>There are no related items for {{ item.category.title }} category</p>
+                     {% endif %}
+        </div>
+    </div>
+</div>
+
+<!--AJAX Starts Here-->
+
+{% endblock content %}
